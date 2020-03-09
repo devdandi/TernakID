@@ -18,4 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/daftar_user', 'ApiController@daftar_user');
+Route::post('/daftar', 'ApiController@daftar_user');
+Route::post('/login', 'ApiController@login_user');
+Route::get('/product', 'ApiController@product');
+// Route::post('/search', 'ApiController@search_product');
+Route::post('/daftar-kios', 'ApiController@daftar_kios');
+
