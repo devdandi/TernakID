@@ -38,6 +38,7 @@ class ApiModel extends Model
     		}
     		}
     	}
+    	DB::disconnect('foo');
     }
     public static function login_user($email, $password)
     {
@@ -52,5 +53,25 @@ class ApiModel extends Model
     			return 'error';
     		}
     	}
+    }
+    public static function get_kios($name){
+    	$check = DB::table('kios')->where('nama_toko', 'like', '%'.$name.'%')->get();
+    	if($check) {
+    		return $check;
+    	}else{
+    		return false;
+    	}
+    }
+    public static function product($product = null) 
+    {
+        if ($product == null) {
+            return DB::table('ternak')->get();
+        }else{
+            return DB::table('ternak')->where('nama_hewan', $product)->get();
+        }
+    }
+    public function __destruct()
+    {
+        DB::disconnect('foo');
     }
 }
